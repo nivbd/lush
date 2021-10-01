@@ -1,8 +1,12 @@
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { app } from './app.js';
 
+dotenv.config();
+
 async function main() {
-  const uri = 'mongodb+srv://root:root@cluster0.g6zhy.mongodb.net/lusha-exc?retryWrites=true&w=majority';
+  const { DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_NAME } = process.env;
+  const uri = `mongodb+srv://${DATABASE_USER}:${DATABASE_PASS}@${DATABASE_HOST}/${DATABASE_NAME}?retryWrites=true&w=majority`;
 
   try {
     await mongoose.connect(uri);
