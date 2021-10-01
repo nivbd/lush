@@ -1,8 +1,9 @@
 import { CustomError } from './customError.js';
+import { ERRORS } from '../consts/errors.js';
 
 const STATUS_CODE = 400;
-const ERROR_CODE = 'BAD_REQUEST';
-const MESSAGE = 'Something went wrong..';
+const ERROR_CODE = ERRORS.BAD_REQUEST.error_code;
+const MESSAGE = ERRORS.BAD_REQUEST.message;
 
 export class BadRequestError extends CustomError {
   constructor(message, errorCode) {
