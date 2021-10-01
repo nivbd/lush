@@ -5,8 +5,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --exec babel-node ./src/index.js",
+    "test": "jest --watchAll --no-cache"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.js"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -22,9 +28,13 @@
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.6",
     "eslint": "^7.32.0",
+    "jest": "^27.2.4",
+    "mongodb-memory-server": "^7.4.2",
     "nodemon": "^2.0.13",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "supertest": "^6.1.6"
   }
 }
