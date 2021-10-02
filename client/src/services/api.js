@@ -17,12 +17,12 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-const axiosGet = ({ url }) => axiosInstance.get(url, axiosConfig);
+const axiosGet = ({ url, params }) => axiosInstance.get(url, { ...axiosConfig, params });
 const axiosPost = ({ url, data = {} }) =>
   axiosInstance.post(url, data, axiosConfig);
 
-export const getUsers = () => {
-  return axiosGet({ url: '/users' });
+export const getUsers = (params) => {
+  return axiosGet({ url: '/users', params });
 };
 
 export const createUser = (data) => {

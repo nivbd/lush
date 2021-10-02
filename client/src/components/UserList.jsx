@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useCallApi } from '../customHooks/useFetch';
 import { getUsers } from '../services/api';
+import { getTableRows } from '../utils/table';
+import LoadingButton from '../widgets/LoadingButton';
 import Table from './Table';
 
 const tableHeaders = [
@@ -11,39 +13,53 @@ const tableHeaders = [
   { id: 3, name: 'Description', objectKey: 'description' },
 ];
 
+const PAGINATE_LIMIT = 15;
+
 const UserList = () => {
-  const { dispatchApiCall, data, loading } = useCallApi({
+  const [users, setUsers] = useState([]);
+  const {
+    dispatchApiCall: getUsersList,
+    data,
+    loading,
+  } = useCallApi({
     apiFunction: getUsers,
   });
 
   useEffect(() => {
-    dispatchApiCall();
-  }, [dispatchApiCall]);
+    getUsersList({ page: 1, limit: PAGINATE_LIMIT });
+  }, [getUsersList]);
 
-  const getTableRows = () => {
-    if (!data) return;
+  useEffect(() => {
+    if (!data?.docs) return;
+    setUsers((prev) => [...prev, ...data.docs]);
+  }, [data]);
 
-    return data.map((user) => {
-      const { id } = user;
-      const cellValues = tableHeaders.map((header) => {
-        const { objectKey } = header;
-        return user[objectKey] || '';
-      });
-      return {
-        id,
-        cells: cellValues,
-      };
-    });
+  const loadMore = () => {
+    if (!data?.nextPage) return;
+    getUsersList({ page: data.nextPage, limit: PAGINATE_LIMIT });
   };
 
   const renderContent = () => {
     if (loading) return <div>Loading...</div>;
-    return <Table headers={tableHeaders} rows={getTableRows()} />;
+    return (
+      <Table headers={tableHeaders} rows={getTableRows(users, tableHeaders)} />
+    );
   };
+
+  const isFirstDataInitialized = users.length > 0;
+  const buttonDisabled = !isFirstDataInitialized || !data?.nextPage;
 
   return (
     <Wrapper>
       <Title>Users List</Title>
+      <LoadingButton
+        customStyle={{ marginTop: '30px' }}
+        disabled={buttonDisabled}
+        type='button'
+        onClick={loadMore}
+      >
+        See more
+      </LoadingButton>
       <Content>{renderContent()}</Content>
     </Wrapper>
   );
