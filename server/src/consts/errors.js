@@ -6,6 +6,9 @@ export const ERRORS = {
   INVALID_ID: {
     message: 'Invalid id',
   },
+  INVALID_EMAIL: {
+    message: 'Invalid email'
+  },
   USER_DOES_NOT_EXIST: {
     message: 'User does not exist'
   },

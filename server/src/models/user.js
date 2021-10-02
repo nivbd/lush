@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+
 import { Password } from '../services/password.js';
 
 const userSchema = new mongoose.Schema(
@@ -35,6 +37,8 @@ const userSchema = new mongoose.Schema(
     },
   },
 );
+
+userSchema.plugin(mongoosePaginate);
 
 userSchema.pre('save', async function (done) {
   if (this.isModified('password')) {
