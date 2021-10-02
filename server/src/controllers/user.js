@@ -21,7 +21,7 @@ export const getById = async (req, res) => {
 };
 
 export const create = async (req, res) => {
-  const { firstName, lastName, email, description, password } = req.body;
+  const { firstName, lastName, email, description = '', password } = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {

@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema(
         delete ret.__v;
         ret.id = ret._id;
         delete ret._id;
+        delete ret.password;
       },
     },
   },
