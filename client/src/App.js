@@ -12,8 +12,8 @@ import CreateUser from './components/CreateUser';
 
 const App = () => {
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Header />
         <Content>
           <Switch>
@@ -21,13 +21,13 @@ const App = () => {
               <UserList />
             </Route>
             <Route path='/users/create'>
-              <CreateUser/>
+              <CreateUser />
             </Route>
             <Redirect from='/' to='/users/list' />
           </Switch>
         </Content>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 };
 
