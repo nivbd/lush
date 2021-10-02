@@ -23,11 +23,7 @@ const TableComp = ({ headers, rows }) => {
   const renderHeaders = () => {
     return headers.map((headerData) => {
       const { name, id } = headerData;
-      return (
-        <TableCell key={`HEADER_${id}`}>
-          {name}
-        </TableCell>
-      );
+      return <TableCell key={`HEADER_${id}`}>{name}</TableCell>;
     });
   };
 
@@ -42,7 +38,7 @@ const TableComp = ({ headers, rows }) => {
           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
           {cells.map((cell) => {
-            return (<TableCell>{cell}</TableCell>)
+            return <TableCell>{cell}</TableCell>;
           })}
         </TableRow>
       );
@@ -55,9 +51,7 @@ const TableComp = ({ headers, rows }) => {
         <TableHead>
           <TableRow>{renderHeaders()}</TableRow>
         </TableHead>
-        <TableBody>
-          {renderRows()}
-        </TableBody>
+        <TableBody>{renderRows()}</TableBody>
       </Table>
     </TableContainer>
   );

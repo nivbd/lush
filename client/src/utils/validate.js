@@ -3,9 +3,9 @@ export const validateRequired = (value) => {
 };
 
 export const validateEmail = (value) => {
-  const re =
+  const regex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const valid = re.test(String(value).toLowerCase());
+  const valid = regex.test(String(value).toLowerCase());
   return valid ? undefined : 'Invalid Email';
 };
 
