@@ -5,7 +5,7 @@ const defaultHeaders = {
   'Content-Type': 'application/json',
 };
 const axiosConfig = {
-  headers: defaultHeaders
+  headers: defaultHeaders,
 };
 
 axiosInstance.interceptors.response.use(
@@ -17,7 +17,8 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-const axiosGet = ({ url, params }) => axiosInstance.get(url, { ...axiosConfig, params });
+const axiosGet = ({ url, params }) =>
+  axiosInstance.get(url, { ...axiosConfig, params });
 const axiosPost = ({ url, data = {} }) =>
   axiosInstance.post(url, data, axiosConfig);
 

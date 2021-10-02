@@ -42,6 +42,7 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: start;
   padding: 20px;
+  padding-left: 40px;
   background: #b69e9e;
 `;
 
