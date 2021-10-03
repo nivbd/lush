@@ -47,3 +47,4 @@ const axiosInstance = axios.create({ baseURL: 'http://localhost:3002' });
 * make e2e tests also on client.
 * make unit tests to utility functions.
 * adding validation to user fields on server side - if passed and in the correct form.
+* improve ux by adding spinner to the app, and avoid unnecessary loading states. also, empty states should be added.
